@@ -7,7 +7,11 @@ const storyPattern = /\.stories\.(?:[jt]sx?|vue)$/;
 const storySourcePattern = /var __STORY__ = "(.*)"/;
 const storySourceReplacement = '--STORY_SOURCE_REPLACEMENT--';
 
-const mockClassLoader = (id: string) => ({ emitWarning: (message: string) => console.warn(message), resourcePath: id });
+const mockClassLoader = (id: string) => ({
+  emitWarning: (message: string) => console.warn(message),
+  resourcePath: id,
+  getOptions: () => ({})
+});
 
 // HACK: Until we can support only node 15+ and use string.prototype.replaceAll
 const replaceAll = (str: string, search: string, replacement: string) => {
